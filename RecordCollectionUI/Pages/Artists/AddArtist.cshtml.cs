@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace RecordCollectionUI.Pages.Artist
+namespace RecordCollectionUI.Pages.Artists
 {
-    public class IndexModel : PageModel
+    public class AddArtistModel : PageModel
     {
         public void OnGet()
         {
