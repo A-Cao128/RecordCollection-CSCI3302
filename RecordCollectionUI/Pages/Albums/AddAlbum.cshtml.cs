@@ -13,24 +13,36 @@ namespace RecordCollectionUI.Pages.Albums
         {
         }
 
-        public void OnPost()
+        public IActionResult OnPost()
         {
-            // capture user input and add new album to the database
-            /* 
-             * 1. create SQl connection obj
-             * 2. write a query
-             * 3. create SQL command obj
-             * 4. open connection
-             * 5. execute the SQL command obj
-             */
+   
+            if (ModelState.IsValid)
+            {
+                using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
+                {
+                    string sql = "INSERT INTO Album(AlbumTitle, NumberOfTracks, ReleaseDate, Price, AlbumCoverImageURL)" +
+                        "VALUES (@albumTitle, @numberOfTracks, @releaseDate, @price, @albumCoverImageURL)";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@albumTitle", NewAlbum.AlbumTitle);
+                    cmd.Parameters.AddWithValue("@numberOfTracks", NewAlbum.NumberOfTracks);
+                    cmd.Parameters.AddWithValue("@releaseDate", NewAlbum.ReleaseDate);
+                    cmd.Parameters.AddWithValue("@price", NewAlbum.Price);
+                    cmd.Parameters.AddWithValue("@albumCoverImageURL", NewAlbum.AlbumCoverImageURL);
 
-            // step 1
-            SqlConnection conn = new SqlConnection();
-            // step 2
-            string sql = "INSERT INTO Album(AlbumTitle, NumberOfTracks, ReleaseDate, Price, AlbumImageCoverURL)" + 
-                "VALUES ('" + NewAlbum.AlbumTitle + "', '" + NewAlbum.NumberOfTracks + "', '" + NewAlbum.ReleaseDate+ "', '"
-                + NewAlbum.Price + "', '" + NewAlbum.AlbumImageURL + "'";
+                    conn.Open();
 
+                    cmd.ExecuteNonQuery();
+                    // doesn't work yet because need to link up with artistID
+                    /*
+                     *Microsoft.Data.SqlClient.SqlException: 'Cannot insert the value NULL into column 'ArtistID', 
+                     *table 'RecordCollection.dbo.Album'; column does not allow nulls. INSERT fails.
+                     *The statement has been terminated.'
+                     */
+                }
+                return RedirectToPage("Index"); 
+            }
+            return Page();
+            //else statement
         }
     }
 }

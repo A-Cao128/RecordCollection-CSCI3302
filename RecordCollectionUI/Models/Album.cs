@@ -7,7 +7,7 @@
             public string NumberOfTracks { get; set; }
             public string ReleaseDate { get; set; }
             public string Price { get; set; }
-            public string AlbumImageURL { get; set; }
+            public string AlbumCoverImageURL { get; set; }
          
 
         
