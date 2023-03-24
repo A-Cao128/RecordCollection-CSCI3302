@@ -29,7 +29,7 @@ namespace RecordCollectionUI.Pages.Albums
             // step 2
             string sql = "INSERT INTO Album(AlbumTitle, NumberOfTracks, ReleaseDate, Price, AlbumImageCoverURL)" + 
                 "VALUES ('" + NewAlbum.AlbumTitle + "', '" + NewAlbum.NumberOfTracks + "', '" + NewAlbum.ReleaseDate+ "', '"
-                + NewAlbum.Price + "', '" + NewAlbum.AlbumImageURL + "')'";
+                + NewAlbum.Price + "', '" + NewAlbum.AlbumImageURL + "'";
 
         }
     }
