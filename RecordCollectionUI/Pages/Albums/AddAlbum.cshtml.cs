@@ -8,7 +8,7 @@ namespace RecordCollectionUI.Pages.Albums
     public class AddAlbumModel : PageModel
     {
         [BindProperty]
-        Album NewAlbum { get; set; } = new Album();
+        public Album NewAlbum { get; set; } = new Album();
         public void OnGet()
         {
         }

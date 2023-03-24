@@ -2,27 +2,35 @@
 @model RecordCollectionUI.Pages.Artists.AddArtistModel
 @{
 }
+
 <form method="post">
     <div class="row mb-3">
+        <!--mb stands for margin bottom; you can change this value-->
         <label for="inputArtistName" class="col-sm-2 col-form-label">Artist Name:</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputArtistName" />
+            <input type="text" id="inputArtistName" class="form-control" asp-for="@Model.NewArtist.ArtistName" />
         </div>
     </div>
-
     <div class="row mb-3">
+        <!--mb stands for margin bottom; you can change this value-->
         <label for="inputArtistBio" class="col-sm-2 col-form-label">Artist Bio:</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputArtistBio" />
+            <textarea rows="4" type="text" id="inputArtistBio" class="form-control" asp-for="NewArtist.ArtistBio"> </textarea>
         </div>
     </div>
-
     <div class="row mb-3">
+        <!--mb stands for margin bottom; you can change this value-->
         <label for="inputArtistImage" class="col-sm-2 col-form-label">Artist Image:</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputArtistName" />
+            <input type="text" id="inputArtistImage" class="form-control" asp-for="NewArtist.ArtistImageURL" />
         </div>
     </div>
-
-    <button type="submit" class="btn btn-primary">Add Artist</button>
+    <div class="row mb-3">
+        <!--mb stands for margin bottom; you can change this value-->
+        <label for="inputArtistWebsite" class="col-sm-2 col-form-label">Artist Website:</label>
+        <div class="col-sm-10">
+            <input type="text" id="inputArtistWebsite" class="form-control" asp-for="NewArtist.ArtistWebsite" />
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Add artist</button>
 </form>
