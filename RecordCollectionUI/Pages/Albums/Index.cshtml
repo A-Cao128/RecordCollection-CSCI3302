@@ -2,5 +2,52 @@
 @model RecordCollectionUI.Pages.Albums.IndexModel
 @{
 }
-<div>album index page
+<!--bootstrap row has 12 columns-->
+<div class="container">
+    <div class="row mb-3">
+        <!--mb is margin-bottom, number is number of pixels-->
+        <div class="col-sm-3">
+            <h2>Album List</h2>
+        </div>
+        <div class="col-sm-9">
+            <a class="btn btn-primary" asp-page="AddAlbum">Add Album</a>
+        </div>
+    </div>
+    @foreach (var album in Model.AlbumList)
+    {
+        <!--Album List-->
+        <div class="row mb-3">
+            <div class="col-sm-3">
+                <!--Where Album image goes-->
+                <img src="@album.AlbumCoverImageURL" />
+            </div>
+            <div class="col-sm-9">
+                <!--Where Album information goes-->
+                <div class="row">
+                    <!--Album tile here-->
+                    <div class="col-sm-12">
+                        @album.AlbumTitle
+                    </div>
+                </div>
+                <div class="row">
+                    <!--No. of track here-->
+                    <div class="col-sm-12">
+                        @album.NumberOfTracks
+                    </div>
+                </div>
+                <div class="row">
+                    <!--Album relase date here-->
+                    <div class="col-sm-12">
+                        @album.ReleaseDate
+                    </div>
+                </div>
+                <div class="row">
+                    <!--Album price here-->
+                    <div class="col-sm-12">
+                        @album.Price
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>
