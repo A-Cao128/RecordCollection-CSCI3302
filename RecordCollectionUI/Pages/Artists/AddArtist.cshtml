@@ -2,3 +2,27 @@
 @model RecordCollectionUI.Pages.Artists.AddArtistModel
 @{
 }
+<form method="post">
+    <div class="row mb-3">
+        <label for="inputArtistName" class="col-sm-2 col-form-label">Artist Name:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputArtistName" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputArtistBio" class="col-sm-2 col-form-label">Artist Bio:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputArtistBio" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputArtistImage" class="col-sm-2 col-form-label">Artist Image:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputArtistName" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Artist</button>
+</form>
