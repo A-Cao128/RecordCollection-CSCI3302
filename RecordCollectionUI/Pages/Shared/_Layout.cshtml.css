@@ -8,7 +8,7 @@ a.navbar-brand {
 }
 
 a {
-  color: #D3FCD5;
+  color: #0077cc;
 }
 
 .btn-primary {
@@ -47,3 +47,6 @@ button.accept-policy {
   line-height: 60px;
 }
 
+.nav-item{
+    color: #D
+}
