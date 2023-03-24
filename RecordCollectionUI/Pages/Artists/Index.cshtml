@@ -2,3 +2,47 @@
 @model RecordCollectionUI.Pages.Artists.IndexModel
 @{
 }
+
+<!--bootstrap row has 12 columns-->
+<div class="container">
+    <div class="row mb-3">
+        <!--mb is margin-bottom, number is number of pixels-->
+        <div class="col-sm-3">
+            <h2>Artist List</h2>
+        </div>
+        <div class="col-sm-9">
+            <a class="btn btn-primary" asp-page="AddArtist">Add Artist</a>
+        </div>
+    </div>
+    @foreach (var artist in Model.ArtistList)
+    {
+        <!--Artist List-->
+        <div class="row mb-3">
+            <div class="col-sm-3">
+                <!--Where artist image goes-->
+                <img src="@artist.ArtistImageURL" />
+            </div>
+            <div class="col-sm-9">
+                <!--Where artist information goes-->
+                <div class="row">
+                    <!--Artist name here-->
+                    <div class="col-sm-12">
+                        @artist.ArtistName
+                    </div>
+                </div>
+                <div class="row">
+                    <!--Artist bio here-->
+                    <div class="col-sm-12">
+                        @artist.ArtistBio
+                    </div>
+                </div>
+                <div class="row">
+                    <!--Artist website here-->
+                    <div class="col-sm-12">
+                        @artist.ArtistWebsite
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
