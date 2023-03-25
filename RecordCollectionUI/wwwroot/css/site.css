@@ -24,6 +24,7 @@ body {
 }
 
 .artist-image{
-    width: 148px;
-    height: 98px;
+    width: 80%;
+    max-height: 80%;
+    border-radius: 10%;
 }
