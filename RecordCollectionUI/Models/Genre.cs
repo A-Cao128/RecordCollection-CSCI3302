@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MyShelf.UI.Models
+namespace RecordCollectionUI.Models
 {
     public class Genre
     {
         [Key]
-        public int GenreId { get; set; }
+        public int GenreID { get; set; }
         [Required]
         public string GenreName { get; set; } = string.Empty;
     }
