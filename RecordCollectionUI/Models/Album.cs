@@ -1,13 +1,22 @@
-﻿namespace RecordCollectionUI.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RecordCollectionUI.Models
 {
     public class Album
     {
-            public int AlbumID { get; set; }
-            public string AlbumTitle{ get; set; }
-            public string NumberOfTracks { get; set; }
-            public string ReleaseDate { get; set; }
-            public string Price { get; set; }
-            public string AlbumCoverImageURL { get; set; }
+        [Key]
+        public int AlbumID { get; set; }
+        [Required]
+        public string AlbumTitle { get; set; }
+        [Required]
+        public int NumberOfTracks { get; set; }
+        [Required]
+        public DateTime ReleaseDate { get; set; }
+        [Required]
+        public int Price { get; set; }
+        [Required]
+        public string AlbumCoverImageURL { get; set; }
+        [Required]
         public int ArtistID { get; internal set; }
     }
 }
