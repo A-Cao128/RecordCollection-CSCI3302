@@ -28,8 +28,6 @@ namespace RecordCollectionUI.Pages.Artists
                         ExistingArtist.ArtistImageURL = reader["ArtistImageURL"].ToString();
                         ExistingArtist.ArtistWebsite = reader["ArtistWebsite"].ToString();
                     }
-
-
                 }
             }
         }
