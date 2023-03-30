@@ -4,23 +4,57 @@
 }
 <form method="post">
     <div class="row mb-3">
-        <label for="inputAlbumName" class="col-sm-2 col-form-label">Album Name:</label>
+        <label for="inputAlbumTitle" class="col-sm-2 col-form-label">Album Title:</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputAlbumName" />
+            <input type="text" id="inputAlbumTitle" class="form-control" asp-for="@Model.NewAlbum.AlbumTitle" />
         </div>
     </div>
 
     <div class="row mb-3">
-        <label for="inputAlbumBio" class="col-sm-2 col-form-label">Album Bio:</label>
+        <label for="ddlArtist" class="col-sm-2 col-form-label">Artist:</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputAlbumBio" />
+            <select asp-for="NewAlbum.ArtistID" asp-items="@Model.Artist" id="ddlArtist"></select>
         </div>
     </div>
 
     <div class="row mb-3">
-        <label for="inputAlbumImage" class="col-sm-2 col-form-label">Album Image:</label>
+        <label class="col-sm-2 col-form-label">Genre</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputAlbumName" />
+            @for (var i = 0; i < Model.GenreList.Count(); i++)
+            {
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="GenresSelected" checked="@Model.GenreList[i].Selected" id="@Model.GenreList[i].Text" value="@Model.GenreList[i].Value" />
+                    <label class="form-check-label" for="@Model.GenreList[i].Text">@Model.GenreList[i].Text</label>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputNumberOfTracks" class="col-sm-2 col-form-label">Number of Tracks:</label>
+        <div class="col-sm-10">
+            <input type="text" id="inputNumberOfTracks" class="form-control" asp-for="@Model.NewAlbum.NumberOfTracks" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputReleaseDate" class="col-sm-2 col-form-label">Release Date:</label>
+        <div class="col-sm-10">
+            <input type="text" id="inputReleaseDate" class="form-control" asp-for="@Model.NewAlbum.ReleaseDate" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputPrice" class="col-sm-2 col-form-label">Price:</label>
+        <div class="col-sm-10">
+            <input type="text" id="inputPrice" class="form-control" asp-for="@Model.NewAlbum.Price" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputAlbumCoverImageURL" class="col-sm-2 col-form-label">Album Cover:</label>
+        <div class="col-sm-10">
+            <input type="text" id="inputAlbumCoverImageURL" class="form-control" asp-for="@Model.NewAlbum.AlbumCoverImageURL" />
         </div>
     </div>
 

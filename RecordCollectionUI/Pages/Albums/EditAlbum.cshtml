@@ -1,0 +1,47 @@
+﻿@page
+@model RecordCollectionUI.Pages.Albums.EditAlbumModel
+@{
+}
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row mb-3">
+        <label for="inputAlbumTitle" class="col-sm-2 col-form-label" asp-for="ExistingAlbum.AlbumTitle"></label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputAlbumTitle" asp-for="ExistingAlbum.AlbumTitle" />
+            <span asp-validation-for="ExistingAlbum.AlbumTitle" class="text-danger" id="albumTitleError"></span>
+        </div>
+    </div>
+    <!--Not sure about the ArtistID part, circle back to this-->
+    <div class="row mb-3">
+        <label for="inputArtistID" class="col-sm-2 col-form-label">ArtistID</label>
+        <div class="col-sm-10">
+            <textarea class="form-control" id="inputArtistID" asp-for="ExistingAlbum.ArtistID" rows="4"></textarea>
+            <span asp-validation-for="ExistingAlbum.ArtistID" class="text-danger" id="artistIDError"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="inputNumberOfTracks" class="col-sm-2 col-form-label">Number of Tracks:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputNumberOfTracks" asp-for="ExistingAlbum.NumberOfTracks" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="inputReleaseDate" class="col-sm-2 col-form-label">Release Date:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputReleaseDate" asp-for="ExistingAlbum.ReleaseDate" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="inputPrice" class="col-sm-2 col-form-label">Price:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputPrice" asp-for="ExistingAlbum.Price" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="inputAlbumCoverImageURL" class="col-sm-2 col-form-label">Album Cover:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputAlbumCoverImageURL" asp-for="ExistingAlbum.AlbumCoverImageURL" />
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" onclick="return validateInput()">Update Album</button>
+</form>
