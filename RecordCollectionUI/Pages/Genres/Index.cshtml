@@ -1,0 +1,28 @@
+﻿@page
+@model RecordCollectionUI.Pages.Genres.IndexModel
+@{
+}
+
+<div class="container">
+    <div class="row mb-3">
+        <div class="col-sm-3">
+            <h2 class="text-primary">Genre List</h2>
+        </div>
+        <div class="col-sm-9">
+            <a asp-page="AddGenre" class="btn btn-primary">Add Genre</a>
+        </div>
+    </div>
+    <div class="row mb-3 border border-primary">
+        <div class="col-sm-3 text-primary">Genre ID</div>
+        <div class="col-sm-9 text-primary">Genre Name</div>
+        @foreach (var obj in Model.Genres)
+        {
+            <div class="col-sm-3">
+                <label class="form-text">@obj.GenreId</label>
+            </div>
+            <div class="col-sm-9">
+                <label class="form-text">@obj.GenreName</label>
+            </div>
+        }
+    </div>
+</div>
