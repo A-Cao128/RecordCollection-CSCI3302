@@ -21,6 +21,9 @@
             </div>
             <div class="col-sm-9">
                 <label class="form-text">@obj.GenreName</label>
+                <a asp-page="DeleteGenre" asp-route-id="@obj.GenreID" class="btn btn-danger">
+                            <i class="bi bi-trash mx-2"></i>
+                        </a>
             </div>
         }
     </div>
