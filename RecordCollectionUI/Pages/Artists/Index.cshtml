@@ -22,7 +22,7 @@
                 <!--Where artist image goes-->
                 <a href="@artist.ArtistWebsite"><img class = "artist-image" src="@artist.ArtistImageURL"/></a>
             </div>
-            <div class="col-sm-9">
+            <div class="col-sm-8">
                 <!--Where artist information goes-->
                 <div class="row">
                     <!--Artist name here-->
@@ -41,6 +41,16 @@
                     <div class="col-sm-12">
                         <a href="@artist.ArtistWebsite" style="color:#98A6D4">@artist.ArtistName Website</a>
                     </div>
+                </div>
+            </div>
+            <div class="col-sm-1">
+                <div class="col-sm-12">
+                    <a asp-page="EditArtist" asp-route-id="artist.ArtistID">
+                        <i class="bi bi-pencil-square mx-2"></i>
+                    </a>
+                    <a asp-page="DeleteArtist" asp-route-id="@artist.ArtistID">
+                        <i class="bi bi-trash3"></i>Delete Author
+                    </a>
                 </div>
             </div>
         </div>
