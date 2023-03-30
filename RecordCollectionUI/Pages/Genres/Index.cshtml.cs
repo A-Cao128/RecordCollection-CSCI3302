@@ -1,13 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
-using MyShelf.UI.Models;
 using RecordCollectionUI.Models;
 
 namespace RecordCollectionUI.Pages.Genres
 {
     public class IndexModel : PageModel
     {
+        [BindProperty]
         public List<Genre> Genres { get; set; } = new List<Genre>();
         public void OnGet()
         {
@@ -24,7 +24,7 @@ namespace RecordCollectionUI.Pages.Genres
                     while (reader.Read())
                     {
                         Genre genre = new Genre();
-                        genre.GenreId = int.Parse(reader["GenreId"].ToString());
+                        genre.GenreID = int.Parse(reader["GenreID"].ToString());
                         genre.GenreName = reader["GenreName"].ToString();
                         Genres.Add(genre);
                     }
