@@ -2,27 +2,35 @@
 @model RecordCollectionUI.Pages.Genres.IndexModel
 @{
 }
+<style>
+    h4{
+        color: #AFD5AA;
+        font-family: 
+
+
+    }
+</style>
 <div class="container">
     <div class="row mb-3">
         <div class="col-sm-3">
-            <h2 class="text-primary">Genre List</h2>
+            <h2>Genre List</h2>
         </div>
         <div class="col-sm-9">
-            <a asp-page="AddGenre" class="btn btn-primary">Add Genre</a>
+            <a asp-page="AddGenre" class="btn btn-secondary">Add Genre</a>
         </div>
     </div>
-    <div class="row mb-3 border border-primary">
-        <div class="col-sm-3 text-primary">Genre ID</div>
-        <div class="col-sm-9 text-primary">Genre Name</div>
+    <div class="row mb-3">
+        <h4>Genre ID</h4>
+        <h4>Genre Name</h4>
         @foreach (var obj in Model.Genres)
         {
             <div class="col-sm-3">
-                <label class="form-text">@obj.GenreID</label>
+                <label class="form-text" style="color: #AFD5AA">@obj.GenreID</label>
             </div>
             <div class="col-sm-9">
-                <label class="form-text">@obj.GenreName</label>
-                <a asp-page="DeleteGenre" asp-route-id="@obj.GenreID" class="btn btn-danger">
-                            <i class="bi bi-trash mx-2"></i>
+                <label class="form-text" style="color: #AFD5AA">@obj.GenreName</label>
+                <a asp-page="DeleteGenre" asp-route-id="@obj.GenreID">
+                            <i class="bi bi-trash mx-2">  </i>
                         </a>
             </div>
         }
