@@ -33,9 +33,9 @@ namespace RecordCollectionUI.Pages.Albums
                     {
                         Album album = new Album();
                         album.AlbumTitle = reader["AlbumTitle"].ToString();
-                        album.NumberOfTracks = reader["NumberOfTracks"].ToString();
-                        album.ReleaseDate = reader["ReleaseDate"].ToString();
-                        album.Price = reader["Price"].ToString();
+                        album.NumberOfTracks = (int)reader["NumberOfTracks"];
+                        album.ReleaseDate = (DateTime)reader["ReleaseDate"];
+                        album.Price = (int)reader["Price"];
                         album.AlbumCoverImageURL = reader["AlbumCoverImageURL"].ToString();
                         album.AlbumID = int.Parse(reader["AlbumID"].ToString());
                         AlbumList.Add(album);
