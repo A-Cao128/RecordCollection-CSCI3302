@@ -2,7 +2,6 @@
 @model RecordCollectionUI.Pages.Genres.IndexModel
 @{
 }
-
 <div class="container">
     <div class="row mb-3">
         <div class="col-sm-3">
@@ -18,11 +17,15 @@
         @foreach (var obj in Model.Genres)
         {
             <div class="col-sm-3">
-                <label class="form-text">@obj.GenreId</label>
+                <label class="form-text">@obj.GenreID</label>
             </div>
             <div class="col-sm-9">
                 <label class="form-text">@obj.GenreName</label>
+                <a asp-page="DeleteGenre" asp-route-id="@obj.GenreID" class="btn btn-danger">
+                            <i class="bi bi-trash mx-2"></i>
+                        </a>
             </div>
         }
     </div>
 </div>
+

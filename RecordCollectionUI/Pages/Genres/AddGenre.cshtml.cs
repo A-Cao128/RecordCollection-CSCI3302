@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
-using MyShelf.UI.Models;
 using RecordCollectionUI.Models;
 
 namespace RecordCollectionUI.Pages.Genres
