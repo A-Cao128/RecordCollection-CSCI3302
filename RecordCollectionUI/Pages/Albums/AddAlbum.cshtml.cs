@@ -72,8 +72,8 @@ namespace RecordCollectionUI.Pages.Albums
             {
                 using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
                 {
-                    string sql = "INSERT INTO Album(AlbumTitle, NumberOfTracks, ReleaseDate, Price, AlbumCoverImageURL)" +
-                        "VALUES (@albumTitle, @numberOfTracks, @releaseDate, @price, @albumCoverImageURL)";
+                    string sql = "INSERT INTO Album(AlbumTitle,ArtistID, NumberOfTracks, ReleaseDate, Price, AlbumCoverImageURL)" +
+                        "VALUES (@albumTitle,@artistID, @numberOfTracks, @releaseDate, @price, @albumCoverImageURL)";
                     string sqlArtistID = "SELECT @@Identity";
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@albumTitle", NewAlbum.AlbumTitle);
@@ -84,6 +84,9 @@ namespace RecordCollectionUI.Pages.Albums
                     cmd.Parameters.AddWithValue("@albumCoverImageURL", NewAlbum.AlbumCoverImageURL);
                     conn.Open();
                     cmd.ExecuteNonQuery();
+                    /*Microsoft.Data.SqlClient.SqlException: 'Cannot insert the value NULL into column 'ArtistID', 
+                     * table 'RecordCollection.dbo.Album'; column does not allow nulls. INSERT fails.
+                        The statement has been terminated.'*/
                     cmd.CommandText = sqlArtistID;
                     int albumID = int.Parse(cmd.ExecuteScalar().ToString());
 

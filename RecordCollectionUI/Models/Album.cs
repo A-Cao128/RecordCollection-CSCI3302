@@ -17,6 +17,6 @@ namespace RecordCollectionUI.Models
         [Required]
         public string AlbumCoverImageURL { get; set; }
         [Required]
-        public int ArtistID { get; internal set; }
+        public int ArtistID { get; set; }
     }
 }
