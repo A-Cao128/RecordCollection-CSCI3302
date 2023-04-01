@@ -15,9 +15,9 @@ namespace RecordCollectionUI.Pages.Albums
             {
                 using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
                 {
-                    string sql = "SELECT * FROM Artist WHERE ArtistID = @artistID";
+                    string sql = "SELECT * FROM Album WHERE AlbumID = @albumID";
                     SqlCommand cmd = new SqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@artistID", id);
+                    cmd.Parameters.AddWithValue("@albumID", id);
                     conn.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.HasRows)
@@ -26,7 +26,7 @@ namespace RecordCollectionUI.Pages.Albums
                         ExistingAlbum.AlbumTitle = reader["AlbumTitle"].ToString();
                         ExistingAlbum.ArtistID = (int)reader["ArtistID"]; /*Obj to int*/
                         ExistingAlbum.NumberOfTracks = (int)reader["NumberOfTracks"];/*Obj to int*/
-                        ExistingAlbum.ReleaseYear = reader["AuthorWebsite"].ToString();/*Obj to DateTime*/
+                        ExistingAlbum.ReleaseYear = reader["ReleaseYear"].ToString();/*Obj to DateTime*/
                         ExistingAlbum.Price = (decimal)reader["Price"];/*Obj to int*/
                         ExistingAlbum.AlbumCoverImageURL = reader["AlbumCoverImageURL"].ToString();
                     }
