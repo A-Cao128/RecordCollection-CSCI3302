@@ -11,36 +11,42 @@
             <span asp-validation-for="ExistingAlbum.AlbumTitle" class="text-danger" id="albumTitleError"></span>
         </div>
     </div>
-    <!-- this should be a drop down;not sure why it's fussing at line 18-->
+
+    <!-- this should be a drop down;not sure why it's fussing at line 19-->
     <div class="row mb-3">
         <label for="ddlEditArtist" class="col-sm-2 col-form-label">Artist:</label>
         <div class="col-sm-10">
-            <select asp-for="ExistingAlbum.ArtistID" asp-items="@Model.Artist" id="ddlEditArtist"></select>
+            <!-- <select asp-for="ExistingAlbum.ArtistID" asp-items="Model.Artist" id="ddlEditArtist"></select> -->
         </div>
     </div>
+
     <div class="row mb-3">
         <label for="inputNumberOfTracks" class="col-sm-2 col-form-label">Number of Tracks:</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="inputNumberOfTracks" asp-for="ExistingAlbum.NumberOfTracks" />
         </div>
     </div>
+
     <div class="row mb-3">
         <label for="inputReleaseYear" class="col-sm-2 col-form-label">Release Yeaer:</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="inputReleaseYear" asp-for="ExistingAlbum.ReleaseYear" />
         </div>
     </div>
+
     <div class="row mb-3">
         <label for="inputPrice" class="col-sm-2 col-form-label">Price:</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="inputPrice" asp-for="ExistingAlbum.Price" />
         </div>
     </div>
+
     <div class="row mb-3">
         <label for="inputAlbumCoverImageURL" class="col-sm-2 col-form-label">Album Cover:</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="inputAlbumCoverImageURL" asp-for="ExistingAlbum.AlbumCoverImageURL" />
         </div>
     </div>
+
     <button type="submit" class="btn btn-primary" onclick="return validateInput()">Update Album</button>
 </form>
