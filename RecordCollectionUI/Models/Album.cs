@@ -11,9 +11,9 @@ namespace RecordCollectionUI.Models
         [Required]
         public int NumberOfTracks { get; set; }
         [Required]
-        public DateTime ReleaseDate { get; set; }
+        public string ReleaseYear { get; set; }
         [Required]
-        public int Price { get; set; }
+        public decimal Price { get; set; }
         [Required]
         public string AlbumCoverImageURL { get; set; }
         [Required]

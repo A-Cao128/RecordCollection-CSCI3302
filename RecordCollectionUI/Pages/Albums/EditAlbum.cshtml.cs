@@ -26,8 +26,8 @@ namespace RecordCollectionUI.Pages.Albums
                         ExistingAlbum.AlbumTitle = reader["AlbumTitle"].ToString();
                         ExistingAlbum.ArtistID = (int)reader["ArtistID"]; /*Obj to int*/
                         ExistingAlbum.NumberOfTracks = (int)reader["NumberOfTracks"];/*Obj to int*/
-                        ExistingAlbum.ReleaseDate = (DateTime)reader["AuthorWebsite"];/*Obj to DateTime*/
-                        ExistingAlbum.Price = (int)reader["Price"];/*Obj to int*/
+                        ExistingAlbum.ReleaseYear = reader["AuthorWebsite"].ToString();/*Obj to DateTime*/
+                        ExistingAlbum.Price = (decimal)reader["Price"];/*Obj to int*/
                         ExistingAlbum.AlbumCoverImageURL = reader["AlbumCoverImageURL"].ToString();
                     }
                 }
