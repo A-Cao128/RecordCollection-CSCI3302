@@ -44,3 +44,11 @@ body {
     margin: 0 auto;
 }
 
+.indexHeader {
+    text-align:center;
+}
+
+.mx-auto p-2 {
+    align-self:center;
+}
+
