@@ -25,13 +25,13 @@
         </div>
     </div>
     <div class="row mb-3">
-        <h4 class="col-sm-3">Genre ID</h4>
+        <!--<h4 class="col-sm-3">Genre ID</h4> -->
         <h4 class="col-sm-9">Genre Name</h4>
         @foreach (var obj in Model.Genres)
         {
-            <div class="col-sm-3">
+            /*<div class="col-sm-3">
                 <label class="genre form-text" style="color: #AFD5AA">@obj.GenreID</label>
-            </div>
+            </div>*/
             <div class="col-sm-9">
                 <label class="genre form-text" style="color: #AFD5AA">@obj.GenreName </label>
                 <a asp-page="DeleteGenre" asp-route-id="@obj.GenreID" style="color:#98A6D4">
