@@ -11,7 +11,7 @@ namespace RecordCollectionUI.Models
         [Required]
         public int NumberOfTracks { get; set; }
         [Required]
-        public string ReleaseYear { get; set; }
+        public int ReleaseYear { get; set; }
         [Required]
         public decimal Price { get; set; }
         [Required]
