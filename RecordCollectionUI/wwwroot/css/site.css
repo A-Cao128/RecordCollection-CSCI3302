@@ -35,13 +35,12 @@ body {
     
 }
 
-.carousel-item active {
+.carousel-inner {
     height: auto;
     width: 300px;
 }
 
-.carousel-item {
-    height: auto;
-    width: 300px;
+.carousel-inner .item img {
+    margin: 0 auto;
 }
 
