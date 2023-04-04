@@ -5,8 +5,13 @@
 <style>
     h4{
         color: #AFD5AA;
-        font-family: 
+        font-family: fantasy;
 
+
+    }
+    h2{
+        color: #AFD5AA;
+        font-family: fantasy;
 
     }
 </style>
@@ -20,16 +25,16 @@
         </div>
     </div>
     <div class="row mb-3">
-        <h4>Genre ID</h4>
-        <h4>Genre Name</h4>
+        <h4 class="col-sm-3">Genre ID</h4>
+        <h4 class="col-sm-9">Genre Name</h4>
         @foreach (var obj in Model.Genres)
         {
             <div class="col-sm-3">
-                <label class="form-text" style="color: #AFD5AA">@obj.GenreID</label>
+                <label class="genre form-text" style="color: #AFD5AA">@obj.GenreID</label>
             </div>
             <div class="col-sm-9">
-                <label class="form-text" style="color: #AFD5AA">@obj.GenreName</label>
-                <a asp-page="DeleteGenre" asp-route-id="@obj.GenreID">
+                <label class="genre form-text" style="color: #AFD5AA">@obj.GenreName </label>
+                <a asp-page="DeleteGenre" asp-route-id="@obj.GenreID" style="color:#98A6D4">
                             <i class="bi bi-trash mx-2">  </i>
                         </a>
             </div>
