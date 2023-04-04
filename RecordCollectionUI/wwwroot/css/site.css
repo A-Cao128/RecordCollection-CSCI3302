@@ -35,3 +35,13 @@ body {
     
 }
 
+.carousel-item active {
+    height: auto;
+    width: 300px;
+}
+
+.carousel-item {
+    height: auto;
+    width: 300px;
+}
+
