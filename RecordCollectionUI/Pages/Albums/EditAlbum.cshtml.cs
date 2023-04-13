@@ -84,6 +84,74 @@ namespace RecordCollectionUI.Pages.Albums
                     }
                 }
             }
+
+            using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
+            {
+                string sqlGenres = "SELECT GenreID FROM AlbumGenre WHERE AlbumID = @albumID";
+                SqlCommand cmdGenre = new SqlCommand(sqlGenres, conn);
+                cmdGenre.Parameters.AddWithValue("@albumID", ExistingAlbum.AlbumID);
+                conn.Open();
+                SqlDataReader readerGenre = cmdGenre.ExecuteReader();
+                if (readerGenre.HasRows)
+                {
+                    while (readerGenre.Read())
+                    {
+                        foreach (SelectListItem i in GenreList)
+                        {
+                            if (i.Value == readerGenre["GenreID"].ToString())
+                            {
+                                i.Selected = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        /* the actual updating part*/
+        public IActionResult OnPost(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
+            {
+                if (ModelState.IsValid)
+                {
+                    string sql = "UPDATE Album SET AlbumTitle=@albumTitle, ArtistID=@artistID, " +
+                    "NumberOfTracks=@numberOfTracks, ReleaseYear=@releaseYear, Price=@price, AlbumCoverImageURL=@albumCoverImageURL";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@albumTitle", ExistingAlbum.AlbumTitle);
+                    cmd.Parameters.AddWithValue("@artistID", ExistingAlbum.ArtistID);
+                    cmd.Parameters.AddWithValue("@numberOfTracks", ExistingAlbum.NumberOfTracks);
+                    cmd.Parameters.AddWithValue("@releaseYear", ExistingAlbum.ReleaseYear);
+                    cmd.Parameters.AddWithValue("@price", ExistingAlbum.Price);
+                    cmd.Parameters.AddWithValue("@albumCoverImageURL", ExistingAlbum.AlbumCoverImageURL);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+
+                    sql = "DELETE FROM AlbumGenre WHERE AlbumID=@albumID";
+                    cmd.CommandText = sql;
+                    cmd.Parameters.AddWithValue("@albumID", ExistingAlbum.AlbumID);
+                    cmd.ExecuteNonQuery();
+
+
+                    sql = "INSERT INTO AlbumGenre(AlbumID, GenreID) VALUES(@albumID, @genreID)";
+                    cmd.CommandText = sql;
+                    for (int i = 0; i < GenresSelected.Count; i++)
+                    {
+                        cmd.Parameters.AddWithValue("@albumID", ExistingAlbum.AlbumID);
+                        cmd.Parameters.AddWithValue("@genreID", GenresSelected[i].ToString());
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    return RedirectToPage("Index");
+                }
+                else
+                {
+                    return Page();
+                }
+
+
+            }
         }
     }
 }
