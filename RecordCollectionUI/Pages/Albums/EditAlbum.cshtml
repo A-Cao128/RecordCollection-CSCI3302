@@ -13,11 +13,10 @@
         </div>
     </div>
 
-    <!-- this should be a drop down;not sure why it's fussing at line 19-->
     <div class="row mb-3">
         <label for="ddlEditArtist" class="col-sm-2 col-form-label">Artist:</label>
         <div class="col-sm-10">
-            <!-- <select asp-for="ExistingAlbum.ArtistID" asp-items="Model.Artist" id="ddlEditArtist"></select> -->
+            <select asp-for="ExistingAlbum.ArtistID" asp-items="@Model.Artists" id="ddlEditArtist"></select>
         </div>
     </div>
 

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using RecordCollectionUI.Models;
 
@@ -9,6 +10,11 @@ namespace RecordCollectionUI.Pages.Albums
     {
         [BindProperty]
         public Album ExistingAlbum{ get; set; } = new Album();
+        public List<SelectListItem> Artists { get; set; } = new List<SelectListItem>();
+        [BindProperty]
+        public List<SelectListItem> GenreList { get; set; } = new List<SelectListItem>();
+        [BindProperty]
+        public List<int> GenresSelected { get; set; }
         public void OnGet(int id)
         {
             if (ModelState.IsValid)
