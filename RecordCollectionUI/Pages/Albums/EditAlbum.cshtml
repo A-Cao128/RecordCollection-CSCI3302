@@ -13,11 +13,10 @@
         </div>
     </div>
 
-    <!-- this should be a drop down;not sure why it's fussing at line 19-->
     <div class="row mb-3">
         <label for="ddlEditArtist" class="col-sm-2 col-form-label">Artist:</label>
         <div class="col-sm-10">
-            <!-- <select asp-for="ExistingAlbum.ArtistID" asp-items="Model.Artist" id="ddlEditArtist"></select> -->
+            <select asp-for="ExistingAlbum.ArtistID" asp-items="@Model.Artists" id="ddlEditArtist"></select>
         </div>
     </div>
 
@@ -46,6 +45,22 @@
         <label for="inputAlbumCoverImageURL" class="col-sm-2 col-form-label">Album Cover:</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="inputAlbumCoverImageURL" asp-for="ExistingAlbum.AlbumCoverImageURL" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-sm-2">
+            <label class="form-label">Genre</label>
+        </div>
+        <div class="col-sm-10">
+            @for (int i = 0; i < Model.GenreList.Count; i++)
+            {
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="@Model.GenreList[i].Text"
+                       value="@Model.GenreList[i].Value" name="GenresSelected" checked="@Model.GenreList[i].Selected" />
+                    <label for="@Model.GenreList[i].Text" class="form-check-label">@Model.GenreList[i].Text</label>
+                </div>
+            }
         </div>
     </div>
 
