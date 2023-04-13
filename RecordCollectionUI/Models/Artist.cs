@@ -1,4 +1,6 @@
-﻿namespace RecordCollectionUI.Models
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace RecordCollectionUI.Models
 {
     public class Artist
     {
