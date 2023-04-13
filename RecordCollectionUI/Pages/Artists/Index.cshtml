@@ -3,6 +3,15 @@
 @{
     ViewData["Title"] = "Artists";
 }
+<form method = "get">
+    <div class="input-group">
+        <input class="form-control" asp-for="SearchTerm"/>
+        <div>
+            <button type="submit" class="btn btn-secondary">Search</button>
+        </div>
+    </div>
+</form>
+
 
 <!--bootstrap row has 12 columns-->
 <div class="container">

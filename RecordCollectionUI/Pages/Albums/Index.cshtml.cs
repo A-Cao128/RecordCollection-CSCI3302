@@ -46,6 +46,12 @@ namespace RecordCollectionUI.Pages.Albums
                 //ExecuteReader
                 //Select uses this
             }
+           
+        }
+
+        public void allArtists()
+        {
+
         }
     }
 }
