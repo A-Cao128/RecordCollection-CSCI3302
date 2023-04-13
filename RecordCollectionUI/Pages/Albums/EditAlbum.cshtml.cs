@@ -65,7 +65,7 @@ namespace RecordCollectionUI.Pages.Albums
             }
         }
 
-        public void PopulateGenreList()
+        private void PopulateGenreList()
         {
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
             {
