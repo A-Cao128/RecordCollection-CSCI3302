@@ -19,7 +19,7 @@ namespace RecordCollectionUI.Pages.Albums
         {
             PopulateAlbumInfo(id);
             PopulateArtistList();
-            PopulateGenreList();
+            PopulateGenreList(id);
         }
 
         private void PopulateAlbumInfo(int id) 
@@ -65,7 +65,7 @@ namespace RecordCollectionUI.Pages.Albums
             }
         }
 
-        private void PopulateGenreList()
+        private void PopulateGenreList(int id)
         {
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
             {
@@ -89,7 +89,7 @@ namespace RecordCollectionUI.Pages.Albums
             {
                 string sqlGenres = "SELECT GenreID FROM AlbumGenre WHERE AlbumID = @albumID";
                 SqlCommand cmdGenre = new SqlCommand(sqlGenres, conn);
-                cmdGenre.Parameters.AddWithValue("@albumID", ExistingAlbum.AlbumID);
+                cmdGenre.Parameters.AddWithValue("@albumID",id);
                 conn.Open();
                 SqlDataReader readerGenre = cmdGenre.ExecuteReader();
                 if (readerGenre.HasRows)
