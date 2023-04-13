@@ -24,10 +24,10 @@ namespace RecordCollectionUI.Pages.Albums
                     {
                         reader.Read();
                         ExistingAlbum.AlbumTitle = reader["AlbumTitle"].ToString();
-                        ExistingAlbum.ArtistID = (int)reader["ArtistID"]; /*Obj to int*/
-                        ExistingAlbum.NumberOfTracks = (int)reader["NumberOfTracks"];/*Obj to int*/
-                        ExistingAlbum.ReleaseYear = (int)reader["ReleaseYear"];/*Obj to DateTime*/
-                        ExistingAlbum.Price = (decimal)reader["Price"];/*Obj to int*/
+                        ExistingAlbum.ArtistID = int.Parse(reader["ArtistID"].ToString()); /*Obj to int*/
+                        ExistingAlbum.NumberOfTracks = int.Parse(reader["NumberOfTracks"].ToString());/*Obj to int*/
+                        ExistingAlbum.ReleaseYear = int.Parse(reader["ReleaseYear"].ToString());/*Obj to DateTime*/
+                        ExistingAlbum.Price = decimal.Parse(reader["Price"].ToString());/*Obj to int*/
                         ExistingAlbum.AlbumCoverImageURL = reader["AlbumCoverImageURL"].ToString();
                     }
                 }
