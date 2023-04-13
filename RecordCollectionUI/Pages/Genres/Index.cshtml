@@ -3,19 +3,6 @@
 @{
     ViewData["Title"] = "Genres";
 }
-<style>
-    h4{
-        color: #AFD5AA;
-        font-family: fantasy;
-
-
-    }
-    h2{
-        color: #AFD5AA;
-        font-family: fantasy;
-
-    }
-</style>
 <div class="container">
     <div class="row mb-3">
         <div class="col-sm-3">
@@ -34,7 +21,7 @@
                 <label class="genre form-text" style="color: #AFD5AA">@obj.GenreID</label>
             </div>*/
             <div class="col-sm-9">
-                <label class="genre form-text" style="color: #AFD5AA">@obj.GenreName </label>
+                <label class="genre form-text, info-bio">@obj.GenreName </label>
             </div>
         }
     </div>
