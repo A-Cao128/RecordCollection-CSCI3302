@@ -20,7 +20,15 @@ html {
 body {
     margin-bottom: 60px;
     background-color: #44344F;
-    color:white;
+    color: #98A6D4;
+}
+
+h2, h4{
+    color: #AFD5AA;
+}
+
+.footer {
+    color: #98A6D4;
 }
 
 .artist-image {
@@ -33,6 +41,28 @@ body {
     height: auto;
     width: 300px;
     
+}
+
+.title-name {
+ /*   for album title and artist name*/
+    font-weight:bold;
+    color:#AFD5AA;
+    font-size:x-large;
+}
+
+.info-bio {
+/*    for album info, artist bio, and genre list*/
+    color:#AFD5AA;
+    font-family:monospace;
+}
+
+.artist-website {
+    color: #98A6D4;
+}
+
+.icon {
+    color: #98A6D4;
+    font-size: 45px;
 }
 
 .carousel-inner {

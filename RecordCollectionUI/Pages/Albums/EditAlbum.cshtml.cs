@@ -22,7 +22,7 @@ namespace RecordCollectionUI.Pages.Albums
             PopulateGenreList();
         }
 
-        public void PopulateAlbumInfo(int id) 
+        private void PopulateAlbumInfo(int id) 
         {
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
             {
@@ -44,7 +44,7 @@ namespace RecordCollectionUI.Pages.Albums
             }
         }
 
-        public void PopulateArtistList() 
+        private void PopulateArtistList() 
         {
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
             {
@@ -65,7 +65,7 @@ namespace RecordCollectionUI.Pages.Albums
             }
         }
 
-        public void PopulateGenreList()
+        private void PopulateGenreList()
         {
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
             {

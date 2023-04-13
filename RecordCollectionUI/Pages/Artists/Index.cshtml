@@ -18,7 +18,7 @@
     <div class="row mb-3">
         <!--mb is margin-bottom, number is number of pixels-->
         <div class="col-sm-3">
-            <h2 style="color:#AFD5AA">Artist List</h2>
+            <h2>Artist List</h2>
         </div>
         <div class="col-sm-9">
             <a class="btn btn-secondary" asp-page="AddArtist">Add Artist</a>
@@ -36,31 +36,31 @@
                 <!--Where artist information goes-->
                 <div class="row">
                     <!--Artist name here-->
-                    <div style="font-weight:bold; color:#AFD5AA; font-size:x-large" class="col-sm-12">
+                    <div class="col-sm-12, title-name">
                         @artist.ArtistName
                     </div>
                 </div>
                 <div class="row">
                     <!--Artist bio here-->
-                    <div style="color:#AFD5AA; font-family:monospace" class="col-sm-12">
+                    <div class="col-sm-12, info-bio">
                         @artist.ArtistBio
                     </div>
                 </div>
                 <div class="row">
                     <!--Artist website here-->
                     <div class="col-sm-12">
-                        <a href="@artist.ArtistWebsite" style="color:#98A6D4">@artist.ArtistName Website</a>
+                        <a href="@artist.ArtistWebsite" class="artist-website">@artist.ArtistName Website</a>
                     </div>
                 </div>
             </div>
             <div class="col-sm-1">
                 <div class="col-sm-12">
-                    <a asp-page="EditArtist" asp-route-id="@artist.ArtistID" style="color:#98A6D4">
-                        <i class="bi bi-pencil-square mx-2" style="font-size: 45px"></i>
+                    <a asp-page="EditArtist" asp-route-id="@artist.ArtistID" class="icon">
+                        <i class="bi bi-pencil-square mx-2"></i>
                     </a>
-                    <a asp-page="DeleteArtist" asp-route-id="@artist.ArtistID" style="color:#98A6D4"
+                    <a asp-page="DeleteArtist" asp-route-id="@artist.ArtistID" class="icon"
                     onclick="return confirm('Are you sure you want to delete the author? The action cannot be undone')">
-                        <i class="bi bi-trash3" style="font-size: 45px"></i>
+                        <i class="bi bi-trash3"></i>
                     </a>
                 </div>
             </div>

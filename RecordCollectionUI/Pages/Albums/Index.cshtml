@@ -11,7 +11,7 @@
             <h2>Album List</h2>
         </div>
         <div class="col-sm-9">
-            <a class="btn btn-primary" asp-page="AddAlbum">Add Album</a>
+            <a class="btn btn-secondary" asp-page="AddAlbum">Add Album</a>
         </div>
     </div>
     @foreach (var album in Model.AlbumList)
@@ -26,36 +26,36 @@
                 <!--Where Album information goes-->
                 <div class="row">
                     <!--Album tile here-->
-                    <div style="font-weight:bold; color:#AFD5AA; font-size:x-large" class="col-sm-12">
+                    <div class="col-sm-12, title-name">
                         @album.AlbumTitle
                     </div>
                 </div>
                 <div class="row">
                     <!--No. of track here-->
-                    <div style="color:#AFD5AA; font-family:monospace" class="col-sm-12">
+                    <div class="col-sm-12, info-bio">
                         Number of tracks: @album.NumberOfTracks
                     </div>
                 </div>
                 <div class="row">
                     <!--Album relase date here-->
-                    <div style="color:#AFD5AA; font-family:monospace" class="col-sm-12">
+                    <div class="col-sm-12, info-bio">
                         Release Year: @album.ReleaseYear
                     </div>
                 </div>
                 <div class="row">
                     <!--Album price here-->
-                    <div style="color:#AFD5AA; font-family:monospace" class="col-sm-12">
+                    <div class="col-sm-12, info-bio">
                         $@album.Price
                     </div>
                 </div>
             </div>
             <div class="col-sm-1">
                 <div class="col-sm-12">
-                    <a asp-page="EditAlbum" asp-route-id="@album.AlbumID" style="color:#98A6D4">
-                        <i class="bi bi-pencil-square mx-2" style="font-size: 45px"></i>
+                    <a asp-page="EditAlbum" asp-route-id="@album.AlbumID" class="icon">
+                        <i class="bi bi-pencil-square mx-2"></i>
                     </a>
-                    <a asp-page="DeleteAlbum" asp-route-id="@album.AlbumID" style="color:#98A6D4">
-                        <i class="bi bi-trash3" style="font-size: 45px"></i>
+                    <a asp-page="DeleteAlbum" asp-route-id="@album.AlbumID" class="icon">
+                        <i class="bi bi-trash3"></i>
                     </a>
                 </div>
             </div>

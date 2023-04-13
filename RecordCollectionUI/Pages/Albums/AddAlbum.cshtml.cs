@@ -72,8 +72,8 @@ namespace RecordCollectionUI.Pages.Albums
             {
                 using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
                 {
-                    string sql = "INSERT INTO Album(AlbumTitle,ArtistID, NumberOfTracks, ReleaseYear, Price, AlbumCoverImageURL)" +
-                        "VALUES (@albumTitle,@artistID, @numberOfTracks, @releaseYear, @price, @albumCoverImageURL)";
+                    string sql = "INSERT INTO Album(AlbumTitle, ArtistID, NumberOfTracks, ReleaseYear, Price, AlbumCoverImageURL)" +
+                        "VALUES (@albumTitle, @artistID, @numberOfTracks, @releaseYear, @price, @albumCoverImageURL)";
                     string sqlArtistID = "SELECT @@Identity";
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@albumTitle", NewAlbum.AlbumTitle);
