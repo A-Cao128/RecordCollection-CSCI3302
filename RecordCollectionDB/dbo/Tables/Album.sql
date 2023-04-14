@@ -7,8 +7,10 @@
     [Price]              DECIMAL (5, 2) NOT NULL,
     [AlbumCoverImageURL] VARCHAR (6000) NOT NULL,
     CONSTRAINT [PK_Album] PRIMARY KEY CLUSTERED ([AlbumID] ASC),
-    CONSTRAINT [ArtistAlbum] FOREIGN KEY ([ArtistID]) REFERENCES [dbo].[Artist] ([ArtistID]) ON DELETE CASCADE
+    CONSTRAINT [ArtistAlbum] FOREIGN KEY ([ArtistID]) REFERENCES [dbo].[Artist] ([ArtistID])
 );
+
+
 
 
 

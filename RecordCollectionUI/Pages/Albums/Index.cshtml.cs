@@ -33,9 +33,9 @@ namespace RecordCollectionUI.Pages.Albums
                     {
                         Album album = new Album();
                         album.AlbumTitle = reader["AlbumTitle"].ToString();
-                        album.NumberOfTracks = (int)reader["NumberOfTracks"];
-                        album.ReleaseYear = (int)reader["ReleaseYear"];
-                        album.Price = (decimal)reader["Price"]; //'Unable to cast object of type 'System.Decimal' to type 'System.Int32'.'
+                        album.NumberOfTracks = int.Parse(reader["NumberOfTracks"].ToString());
+                        album.ReleaseYear = int.Parse(reader["ReleaseYear"].ToString());
+                        album.Price = decimal.Parse(reader["Price"].ToString()); 
                         album.AlbumCoverImageURL = reader["AlbumCoverImageURL"].ToString();
                         album.AlbumID = int.Parse(reader["AlbumID"].ToString());
                         AlbumList.Add(album);
