@@ -117,7 +117,8 @@ namespace RecordCollectionUI.Pages.Albums
                 if (ModelState.IsValid)
                 {
                     string sql = "UPDATE Album SET AlbumTitle=@albumTitle, ArtistID=@artistID, " +
-                    "NumberOfTracks=@numberOfTracks, ReleaseYear=@releaseYear, Price=@price, AlbumCoverImageURL=@albumCoverImageURL";
+                    "NumberOfTracks=@numberOfTracks, ReleaseYear=@releaseYear, Price=@price, " +
+                    "AlbumCoverImageURL=@albumCoverImageURL WHERE AlbumID=@albumID";
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@albumTitle", ExistingAlbum.AlbumTitle);
                     cmd.Parameters.AddWithValue("@artistID", ExistingAlbum.ArtistID);
