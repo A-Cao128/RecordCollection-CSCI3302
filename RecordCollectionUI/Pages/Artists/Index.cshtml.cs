@@ -29,7 +29,7 @@ namespace RecordCollectionUI.Pages.Artists
                 using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
                 {
                     //step 2
-                    string sql = "SELECT * FROM Artist WHERE ArtistName LIKE '%" + SearchTerm + "'" ;
+                    string sql = "SELECT * FROM Artist WHERE ArtistName LIKE '%" + SearchTerm + "%' ORDER BY ArtistName" ;
                     //step 3
                     //SqlCommand cmd = new SqlCommand();
                     //cmd.CommandText = sql;

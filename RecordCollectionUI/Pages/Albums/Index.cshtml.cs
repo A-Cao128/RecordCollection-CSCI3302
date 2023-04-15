@@ -26,7 +26,7 @@ namespace RecordCollectionUI.Pages.Albums
                 using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
                 {
                     //step 2
-                    string sql = "SELECT * FROM Album WHERE AlbumTitle LIKE '%" + SearchTerm + "' ORDER BY AlbumTitle";
+                    string sql = "SELECT * FROM Album WHERE AlbumTitle LIKE '%" + SearchTerm + "%' ORDER BY AlbumTitle";
                     //step 3
                     //SqlCommand cmd = new SqlCommand();
                     //cmd.CommandText = sql;

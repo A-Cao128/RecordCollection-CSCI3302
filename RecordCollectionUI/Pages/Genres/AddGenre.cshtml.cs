@@ -15,15 +15,20 @@ namespace RecordCollectionUI.Pages.Genres
 
         public IActionResult OnPost()
         {
-            using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
+            if (ModelState.IsValid)
             {
-                string sql = "INSERT INTO Genre(GenreName) VALUES (@genreName)";
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@genreName", NewGenre.GenreName);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                return RedirectToPage("Index");
+                using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
+                {
+                    string sql = "INSERT INTO Genre(GenreName) VALUES (@genreName)";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@genreName", NewGenre.GenreName);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    return RedirectToPage("Index");
+                }
             }
+            return Page();
+            
         }
     }
 }
