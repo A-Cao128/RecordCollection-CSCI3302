@@ -10,50 +10,59 @@ namespace RecordCollectionUI.Pages.Albums
         public Album NewAlbum = new Album();
         [BindProperty]
         public List<Album> AlbumList { get; set; } = new List<Album>();
-        [BindProperty]
+        [BindProperty(SupportsGet = true)]
         public string SearchTerm { get; set; }
         //global variable
         public void OnGet()
         {
-            searchAlbums(SearchTerm);
-           
+            searchAlbumTitle(SearchTerm);
+
         }
 
-        public void searchAlbums(string SearchTerm)
+        public void searchAlbumTitle(string SearchTerm)
         {
-            using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
+            if (!string.IsNullOrEmpty(SearchTerm))
             {
-                //step 2
-                string sql = "SELECT * FROM Album WHERE AlbumName = '" + SearchTerm + "'" ;
-                //step 3
-                //SqlCommand cmd = new SqlCommand();
-                //cmd.CommandText = sql;
-                //cmd.Connection = conn;
-                //Above 3 lines is the same as the one below line
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                //step 4
-                conn.Open();
-                //step 5
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.HasRows)
+                using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
                 {
-                    while (reader.Read())
+                    //step 2
+                    string sql = "SELECT * FROM Album WHERE AlbumTitle LIKE '%" + SearchTerm + "' ORDER BY AlbumTitle";
+                    //step 3
+                    //SqlCommand cmd = new SqlCommand();
+                    //cmd.CommandText = sql;
+                    //cmd.Connection = conn;
+                    //Above 3 lines is the same as the one below line
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    //step 4
+                    conn.Open();
+                    //step 5
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
                     {
-                        Album album = new Album();
-                        album.AlbumTitle = reader["AlbumTitle"].ToString();
-                        album.NumberOfTracks = int.Parse(reader["NumberOfTracks"].ToString());
-                        album.ReleaseYear = int.Parse(reader["ReleaseYear"].ToString());
-                        album.Price = decimal.Parse(reader["Price"].ToString());
-                        album.AlbumCoverImageURL = reader["AlbumCoverImageURL"].ToString();
-                        album.AlbumID = int.Parse(reader["AlbumID"].ToString());
-                        AlbumList.Add(album);
+                        while (reader.Read())
+                        {
+                            Album album = new Album();
+                            album.AlbumTitle = reader["AlbumTitle"].ToString();
+                            album.NumberOfTracks = int.Parse(reader["NumberOfTracks"].ToString());
+                            album.ReleaseYear = int.Parse(reader["ReleaseYear"].ToString());
+                            album.Price = decimal.Parse(reader["Price"].ToString());
+                            album.AlbumCoverImageURL = reader["AlbumCoverImageURL"].ToString();
+                            album.AlbumID = int.Parse(reader["AlbumID"].ToString());
+                            AlbumList.Add(album);
+                        }
                     }
+                    //ExecuteNonQuery executes without caring about result
+                    //Insert and delete usually use these
+                    //ExecuteReader
+                    //Select uses this
                 }
-                //ExecuteNonQuery executes without caring about result
-                //Insert and delete usually use these
-                //ExecuteReader
-                //Select uses this
+
             }
+            else
+            {
+                allAlbums();
+            }
+
         }
 
         public void allAlbums()
