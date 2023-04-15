@@ -10,8 +10,53 @@ namespace RecordCollectionUI.Pages.Albums
         public Album NewAlbum = new Album();
         [BindProperty]
         public List<Album> AlbumList { get; set; } = new List<Album>();
+        [BindProperty]
+        public string SearchTerm { get; set; }
         //global variable
         public void OnGet()
+        {
+            searchAlbums(SearchTerm);
+           
+        }
+
+        public void searchAlbums(string SearchTerm)
+        {
+            using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
+            {
+                //step 2
+                string sql = "SELECT * FROM Album WHERE AlbumName = '" + SearchTerm + "'" ;
+                //step 3
+                //SqlCommand cmd = new SqlCommand();
+                //cmd.CommandText = sql;
+                //cmd.Connection = conn;
+                //Above 3 lines is the same as the one below line
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                //step 4
+                conn.Open();
+                //step 5
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Album album = new Album();
+                        album.AlbumTitle = reader["AlbumTitle"].ToString();
+                        album.NumberOfTracks = int.Parse(reader["NumberOfTracks"].ToString());
+                        album.ReleaseYear = int.Parse(reader["ReleaseYear"].ToString());
+                        album.Price = decimal.Parse(reader["Price"].ToString());
+                        album.AlbumCoverImageURL = reader["AlbumCoverImageURL"].ToString();
+                        album.AlbumID = int.Parse(reader["AlbumID"].ToString());
+                        AlbumList.Add(album);
+                    }
+                }
+                //ExecuteNonQuery executes without caring about result
+                //Insert and delete usually use these
+                //ExecuteReader
+                //Select uses this
+            }
+        }
+
+        public void allAlbums()
         {
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
             {
@@ -35,7 +80,7 @@ namespace RecordCollectionUI.Pages.Albums
                         album.AlbumTitle = reader["AlbumTitle"].ToString();
                         album.NumberOfTracks = int.Parse(reader["NumberOfTracks"].ToString());
                         album.ReleaseYear = int.Parse(reader["ReleaseYear"].ToString());
-                        album.Price = decimal.Parse(reader["Price"].ToString()); 
+                        album.Price = decimal.Parse(reader["Price"].ToString());
                         album.AlbumCoverImageURL = reader["AlbumCoverImageURL"].ToString();
                         album.AlbumID = int.Parse(reader["AlbumID"].ToString());
                         AlbumList.Add(album);
@@ -46,12 +91,6 @@ namespace RecordCollectionUI.Pages.Albums
                 //ExecuteReader
                 //Select uses this
             }
-           
-        }
-
-        public void allArtists()
-        {
-
         }
     }
 }
