@@ -126,12 +126,13 @@ namespace RecordCollectionUI.Pages.Albums
                     cmd.Parameters.AddWithValue("@releaseYear", ExistingAlbum.ReleaseYear);
                     cmd.Parameters.AddWithValue("@price", ExistingAlbum.Price);
                     cmd.Parameters.AddWithValue("@albumCoverImageURL", ExistingAlbum.AlbumCoverImageURL);
+                    cmd.Parameters.AddWithValue("@albumID", id);
                     conn.Open();
                     cmd.ExecuteNonQuery();
 
                     sql = "DELETE FROM AlbumGenre WHERE AlbumID=@albumID";
                     cmd.CommandText = sql;
-                    cmd.Parameters.AddWithValue("@albumID", ExistingAlbum.AlbumID);
+                    //cmd.Parameters.AddWithValue("@albumID", id);
                     cmd.ExecuteNonQuery();
 
 

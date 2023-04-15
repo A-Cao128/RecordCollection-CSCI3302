@@ -22,6 +22,9 @@
             </div>*/
             <div class="col-sm-9">
                 <label class="genre form-text, info-bio">@obj.GenreName </label>
+                <a asp-page="EditGenre" asp-route-id="@obj.GenreID" class="icon">
+                    <i class="bi bi-pencil-square mx-2"></i>
+                </a>
             </div>
         }
     </div>
