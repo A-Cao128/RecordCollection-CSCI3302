@@ -65,6 +65,11 @@ h2, h4{
     font-size: 45px;
 }
 
+.small-icon {
+    color: #98A6D4;
+    font-size: 15px;
+}
+
 .carousel-inner {
     height: auto;
     width: 300px;
