@@ -72,11 +72,11 @@ h2, h4{
 
 .carousel-inner {
     height: auto;
-    width: 300px;
+    width: 400px;
 }
 
 .carousel-inner .item img {
-    margin: 0 auto;
+    margin: auto;
 }
 
 .indexHeader {
@@ -85,5 +85,9 @@ h2, h4{
 
 .mx-auto p-2 {
     align-self:center;
+}
+
+.vinyl_img {
+    float: left;
 }
 
