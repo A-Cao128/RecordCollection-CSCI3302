@@ -92,19 +92,22 @@ h2, h4{
 }
 
 .carousel-inner {
-    height: auto;
-    width: 300px;
+    height: 400px;
+    width: auto;
 }
 
 .carousel-inner .item img {
-    margin: 0 auto;
+    margin: auto;
+
 }
 
 .indexHeader {
     text-align:center;
 }
 
-.mx-auto p-2 {
-    align-self:center;
+img {
+    width: 100%;
+    height: auto;
 }
+
 
