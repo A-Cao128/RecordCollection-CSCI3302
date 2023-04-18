@@ -21,7 +21,7 @@
                 <label class="genre form-text" style="color: #AFD5AA">@obj.GenreID</label>
             </div>*/
             <div class="col-sm-9">
-                <label class="genre form-text, info-bio">@obj.GenreName </label>
+                <a asp-page="ResultsGenre" asp-route-id="@obj.GenreID" class="genre form-text, info-bio">@obj.GenreName </a>
                 <a asp-page="EditGenre" asp-route-id="@obj.GenreID" class="small-icon">
                     <i class="bi bi-pencil-fill"></i>
                 </a>

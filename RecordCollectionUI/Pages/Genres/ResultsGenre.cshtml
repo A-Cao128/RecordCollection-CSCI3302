@@ -1,0 +1,49 @@
+﻿@page
+@model RecordCollectionUI.Pages.Genres.ResultsGenreModel
+@{
+}
+<div>
+    @foreach (var album in Model.AlbumsGenres)
+    {
+        <!--Album List-->
+        <div class="row mb-3">
+            <div class="col-sm-3">
+                <!--Where Album image goes-->
+                <img class="album-image" src="@album.AlbumCoverImageURL" />
+            </div>
+
+            <div class="col-sm-8">
+                <!--Where Album information goes-->
+                <div class="row">
+                    <!--Album tile here-->
+                    <div class="col-sm-12, title-name">
+                        @album.AlbumTitle
+                    </div>
+                </div>
+
+                <!--somehow list artist of album here-->
+
+                <div class="row">
+                    <!--No. of track here-->
+                    <div class="col-sm-12, info-bio">
+                        Number of tracks: @album.NumberOfTracks
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!--Album relase date here-->
+                    <div class="col-sm-12, info-bio">
+                        Release Year: @album.ReleaseYear
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!--Album price here-->
+                    <div class="col-sm-12, info-bio">
+                        $@album.Price
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+</div>
