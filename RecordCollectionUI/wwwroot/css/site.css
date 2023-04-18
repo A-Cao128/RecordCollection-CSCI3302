@@ -31,6 +31,22 @@ h2, h4{
     color: #98A6D4;
 }
 
+#navigation-bar{
+    color: #98A6D4;
+}
+
+#navigation-bar-entry-one{
+    color: #98A6D4;
+}
+
+#navigation-bar-entry-two {
+    color: #98A6D4;
+}
+
+#navigation-bar-entry-three {
+    color: #98A6D4;
+}
+
 .artist-image {
     height: auto;
     width: 300px;
