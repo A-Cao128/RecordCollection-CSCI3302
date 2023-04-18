@@ -14,7 +14,7 @@ namespace RecordCollectionUI.Pages.Genres
         {
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
             {
-                string sql = "SELECT * FROM Album FULL JOIN AlbumGenre ON Album.AlbumID = AlbumGenre.AlbumID FULL JOIN Genre ON Album.AlbumID = Genre.AlbumID WHERE Genre.GenreID = @genreID";
+                string sql = "SELECT * FROM Album FULL JOIN AlbumGenre ON Album.AlbumID = AlbumGenre.AlbumID FULL JOIN Genre ON AlbumGenre.GenreID = Genre.GenreID WHERE Genre.GenreID = @genreID";
                 SqlCommand cmd = conn.CreateCommand();
                 cmd.Parameters.AddWithValue("@genreID", id);
                 cmd.CommandText = sql;
