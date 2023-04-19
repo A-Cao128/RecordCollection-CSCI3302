@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using RecordCollectionUI.Models;
 
-namespace RecordCollectionUI.Pages.Albums
+namespace RecordCollectionUI.Pages.Genres
 {
     public class EditAlbumModel : PageModel
     {
