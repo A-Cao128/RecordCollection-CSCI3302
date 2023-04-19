@@ -2,6 +2,11 @@
 @model RecordCollectionUI.Pages.Genres.ResultsGenreModel
 @{
 }
+<div class="text-center">
+    <h1>@Model.CurrentGenre.GenreName</h1>
+
+</div>
+
 <div>
     @foreach (var album in Model.AlbumsGenres)
     {
@@ -44,6 +49,18 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-sm-1">
+                <div class="col-sm-12">
+                    <a asp-page="/Albums/EditAlbum" asp-route-id="@album.AlbumID" class="icon">
+                        <i class="bi bi-pencil-square mx-2"></i>
+                    </a>
+                    <a asp-page="/Albums/DeleteAlbum" asp-route-id="@album.AlbumID" class="icon"
+                       onclick="return confirm('Are you sure you want to delete the album? The action cannot be undone')">
+                        <i class="bi bi-trash3"></i>
+                    </a>
+                </div>
+            </div>
         </div>
-        }
+    }
 </div>

@@ -9,12 +9,16 @@ namespace RecordCollectionUI.Pages.Genres
     {
         [BindProperty]
         public List<Album> AlbumsGenres { get; set; } = new List<Album>();
+        [BindProperty]
+        public List<Genre> Genres { get; set; } = new List<Genre>();
+        public Genre CurrentGenre { get; set; } = new Genre();
+
 
         public void OnGet(int id)
         {
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
             {
-                string sql = "SELECT * FROM Album FULL JOIN AlbumGenre ON Album.AlbumID = AlbumGenre.AlbumID FULL JOIN Genre ON AlbumGenre.GenreID = Genre.GenreID WHERE Genre.GenreID = @genreID";
+                string sql = "SELECT * FROM Album JOIN AlbumGenre ON Album.AlbumID = AlbumGenre.AlbumID JOIN Genre ON AlbumGenre.GenreID = Genre.GenreID WHERE Genre.GenreID = @genreID";
                 SqlCommand cmd = conn.CreateCommand();
                 cmd.Parameters.AddWithValue("@genreID", id);
                 cmd.CommandText = sql;
@@ -33,6 +37,7 @@ namespace RecordCollectionUI.Pages.Genres
                         album.AlbumCoverImageURL = reader["AlbumCoverImageURL"].ToString();
                         album.AlbumID = int.Parse(reader["AlbumID"].ToString());
                         AlbumsGenres.Add(album);
+                        CurrentGenre.GenreName = reader["GenreName"].ToString();
                     }
                 }
 
