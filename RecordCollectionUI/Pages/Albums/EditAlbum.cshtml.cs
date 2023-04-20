@@ -17,9 +17,9 @@ namespace RecordCollectionUI.Pages.Albums
         public List<int> GenresSelected { get; set; }
         public void OnGet(int id)
         {
-            PopulateAlbumInfo(id);
             PopulateArtistList();
-            PopulateGenreList(id);
+            PopulateGenreList();
+            PopulateAlbumInfo(id);
         }
 
         private void PopulateAlbumInfo(int id) 
@@ -34,6 +34,7 @@ namespace RecordCollectionUI.Pages.Albums
                 if (reader.HasRows)
                 {
                     reader.Read();
+                    ExistingAlbum.AlbumID = id;
                     ExistingAlbum.AlbumTitle = reader["AlbumTitle"].ToString();
                     ExistingAlbum.ArtistID = int.Parse(reader["ArtistID"].ToString()); /*Obj to int*/
                     ExistingAlbum.NumberOfTracks = int.Parse(reader["NumberOfTracks"].ToString());/*Obj to int*/
@@ -48,39 +49,47 @@ namespace RecordCollectionUI.Pages.Albums
         {
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
             {
-                string sql = "SELECT ArtistID, ArtistName FROM Artist Order By ArtistName";
-                SqlCommand cmd = new SqlCommand(sql, conn);
+                string sqlArtist = "SELECT ArtistID, ArtistName FROM Artist Order By ArtistName";
+                SqlCommand cmd = new SqlCommand(sqlArtist, conn);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
                     while (reader.Read())
                     {
-                        SelectListItem item = new SelectListItem();
-                        item.Text = reader["ArtistName"].ToString();
-                        item.Value = reader["ArtistID"].ToString();
-                        Artists.Add(item);
+                        var artist = new SelectListItem();
+                        artist.Text = reader["ArtistName"].ToString();
+                        artist.Value = reader["ArtistID"].ToString();
+                        Artists.Add(artist);
                     }
+                }
+            }
+            foreach (SelectListItem i in Artists)
+            {
+                if (i.Value == ExistingAlbum.ArtistID.ToString())
+                {
+                    i.Selected = true;
+                    break;
                 }
             }
         }
 
-        private void PopulateGenreList(int id)
+        private void PopulateGenreList()
         {
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
             {
-                string sql = "SELECT GenreID, GenreName FROM Genre Order By GenreName";
-                SqlCommand cmd = new SqlCommand(sql, conn);
+                string sqlGenre = "SELECT GenreID, GenreName FROM Genre Order By GenreName";
+                SqlCommand cmd = new SqlCommand(sqlGenre, conn);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
                     while (reader.Read())
                     {
-                        SelectListItem item = new SelectListItem();
-                        item.Text = reader["GenreName"].ToString();
-                        item.Value = reader["GenreID"].ToString();
-                        GenreList.Add(item);
+                        var genre = new SelectListItem();
+                        genre.Text = reader["GenreName"].ToString();
+                        genre.Value = reader["GenreID"].ToString();
+                        GenreList.Add(genre);
                     }
                 }
             }
@@ -89,7 +98,7 @@ namespace RecordCollectionUI.Pages.Albums
             {
                 string sqlGenres = "SELECT GenreID FROM AlbumGenre WHERE AlbumID = @albumID";
                 SqlCommand cmdGenre = new SqlCommand(sqlGenres, conn);
-                cmdGenre.Parameters.AddWithValue("@albumID",id);
+                cmdGenre.Parameters.AddWithValue("@albumID", ExistingAlbum.AlbumID);
                 conn.Open();
                 SqlDataReader readerGenre = cmdGenre.ExecuteReader();
                 if (readerGenre.HasRows)
@@ -126,22 +135,26 @@ namespace RecordCollectionUI.Pages.Albums
                     cmd.Parameters.AddWithValue("@releaseYear", ExistingAlbum.ReleaseYear);
                     cmd.Parameters.AddWithValue("@price", ExistingAlbum.Price);
                     cmd.Parameters.AddWithValue("@albumCoverImageURL", ExistingAlbum.AlbumCoverImageURL);
+                    cmd.Parameters.AddWithValue("@albumID", id);
                     conn.Open();
                     cmd.ExecuteNonQuery();
 
                     sql = "DELETE FROM AlbumGenre WHERE AlbumID=@albumID";
                     cmd.CommandText = sql;
+                    cmd.Parameters.Clear();
                     cmd.Parameters.AddWithValue("@albumID", ExistingAlbum.AlbumID);
-                    cmd.ExecuteNonQuery();
 
+                    int r = cmd.ExecuteNonQuery();
 
-                    sql = "INSERT INTO AlbumGenre(AlbumID, GenreID) VALUES(@albumID, @genreID)";
-                    cmd.CommandText = sql;
-                    for (int i = 0; i < GenresSelected.Count; i++)
+                    string sqlAlbumGenre = "INSERT INTO AlbumGenre(AlbumID, GenreID) VALUES(@albumID, @genreID)";
+                    cmd.CommandText = sqlAlbumGenre;
+                    cmd.Parameters.Clear();
+                    for (int i = 0; i < GenresSelected.Count(); i++)
                     {
                         cmd.Parameters.AddWithValue("@albumID", ExistingAlbum.AlbumID);
                         cmd.Parameters.AddWithValue("@genreID", GenresSelected[i].ToString());
                         cmd.ExecuteNonQuery();
+                        cmd.Parameters.Clear();
                     }
 
                     return RedirectToPage("Index");
