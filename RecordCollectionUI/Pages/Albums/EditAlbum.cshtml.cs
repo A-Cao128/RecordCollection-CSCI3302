@@ -3,30 +3,31 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using RecordCollectionUI.Models;
+using System.Net;
 
 namespace RecordCollectionUI.Pages.Albums
 {
     public class EditAlbumModel : PageModel
     {
         [BindProperty]
-        public Album ExistingAlbum{ get; set; } = new Album();
-        public List<SelectListItem> Artists { get; set; } = new List<SelectListItem>();
+        public Album ExistingAlbum { get; set; } = new Album();
+        [BindProperty]
+        public List<SelectListItem> Artist { get; set; } = new List<SelectListItem>();
         [BindProperty]
         public List<SelectListItem> GenreList { get; set; } = new List<SelectListItem>();
         [BindProperty]
         public List<int> GenresSelected { get; set; }
         public void OnGet(int id)
         {
+            PopulateAlbumInfo(id);
             PopulateArtistList();
             PopulateGenreList();
-            PopulateAlbumInfo(id);
         }
-
-        private void PopulateAlbumInfo(int id) 
+        private void PopulateAlbumInfo(int id)
         {
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
             {
-                string sql = "SELECT * FROM Album WHERE AlbumID = @albumID";
+                string sql = "SELECT * FROM Album WHERE AlbumID=@albumID";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@albumID", id);
                 conn.Open();
@@ -44,63 +45,33 @@ namespace RecordCollectionUI.Pages.Albums
                 }
             }
         }
-
-        private void PopulateArtistList() 
-        {
-            using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
-            {
-                string sqlArtist = "SELECT ArtistID, ArtistName FROM Artist Order By ArtistName";
-                SqlCommand cmd = new SqlCommand(sqlArtist, conn);
-                conn.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        var artist = new SelectListItem();
-                        artist.Text = reader["ArtistName"].ToString();
-                        artist.Value = reader["ArtistID"].ToString();
-                        Artists.Add(artist);
-                    }
-                }
-            }
-            foreach (SelectListItem i in Artists)
-            {
-                if (i.Value == ExistingAlbum.ArtistID.ToString())
-                {
-                    i.Selected = true;
-                    break;
-                }
-            }
-        }
-
         private void PopulateGenreList()
         {
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
             {
-                string sqlGenre = "SELECT GenreID, GenreName FROM Genre Order By GenreName";
-                SqlCommand cmd = new SqlCommand(sqlGenre, conn);
+                string sql = "SELECT GenreID, GenreName FROM Genre Order By GenreName";
+                SqlCommand cmd = new SqlCommand(sql, conn);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
                     while (reader.Read())
                     {
-                        var genre = new SelectListItem();
-                        genre.Text = reader["GenreName"].ToString();
-                        genre.Value = reader["GenreID"].ToString();
-                        GenreList.Add(genre);
+                        SelectListItem item = new SelectListItem();
+                        item.Text = reader["GenreName"].ToString();
+                        item.Value = reader["GenreID"].ToString();
+                        GenreList.Add(item);
                     }
                 }
             }
-
+            // retrieve a list of AlbumGenre records {albumID, genreID} from database
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
             {
-                string sqlGenres = "SELECT GenreID FROM AlbumGenre WHERE AlbumID = @albumID";
-                SqlCommand cmdGenre = new SqlCommand(sqlGenres, conn);
-                cmdGenre.Parameters.AddWithValue("@albumID", ExistingAlbum.AlbumID);
+                string sqlGenres = "SELECT GenreID FROM AlbumGenre WHERE AlbumID=@albumID";
+                SqlCommand cmdGenres = new SqlCommand(sqlGenres, conn);
+                cmdGenres.Parameters.AddWithValue("@albumID", ExistingAlbum.AlbumID);
                 conn.Open();
-                SqlDataReader readerGenre = cmdGenre.ExecuteReader();
+                SqlDataReader readerGenre = cmdGenres.ExecuteReader();
                 if (readerGenre.HasRows)
                 {
                     while (readerGenre.Read())
@@ -118,12 +89,31 @@ namespace RecordCollectionUI.Pages.Albums
             }
         }
 
-        /* the actual updating part*/
-        public IActionResult OnPost(int id)
+        private void PopulateArtistList()
         {
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
             {
-                if (ModelState.IsValid)
+                string sql = "SELECT ArtistID, ArtistName FROM Artist Order By ArtistName";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        var artist = new SelectListItem();
+                        artist.Text = reader["ArtistName"].ToString();
+                        artist.Value = reader["ArtistID"].ToString();
+                        Artist.Add(artist);
+                    }
+                }
+            }
+        }
+        public IActionResult OnPost(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
                 {
                     string sql = "UPDATE Album SET AlbumTitle=@albumTitle, ArtistID=@artistID, " +
                     "NumberOfTracks=@numberOfTracks, ReleaseYear=@releaseYear, Price=@price, " +
@@ -138,7 +128,7 @@ namespace RecordCollectionUI.Pages.Albums
                     cmd.Parameters.AddWithValue("@albumID", id);
                     conn.Open();
                     cmd.ExecuteNonQuery();
-
+                    // delete all records from AlbumGenre table
                     sql = "DELETE FROM AlbumGenre WHERE AlbumID=@albumID";
                     cmd.CommandText = sql;
                     cmd.Parameters.Clear();
@@ -159,13 +149,8 @@ namespace RecordCollectionUI.Pages.Albums
 
                     return RedirectToPage("Index");
                 }
-                else
-                {
-                    return Page();
-                }
-
-
             }
+            return Page();
         }
     }
 }
