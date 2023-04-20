@@ -17,14 +17,16 @@
         <h4 class="col-sm-9">Genre Name</h4>
         @foreach (var obj in Model.Genres)
         {
-            /*<div class="col-sm-3">
-                <label class="genre form-text" style="color: #AFD5AA">@obj.GenreID</label>
-            </div>*/
             <div class="col-sm-9">
-                <a asp-page="ResultsGenre" asp-route-id="@obj.GenreID" class="genre form-text, info-bio">@obj.GenreName </a>
-                <a asp-page="EditGenre" asp-route-id="@obj.GenreID" class="small-icon">
-                    <i class="bi bi-pencil-fill"></i>
-                </a>
+                <div class="info-bio">
+                    @obj.GenreName
+                    <a asp-page="ResultsGenre" asp-route-id="@obj.GenreID" class="small-icon">
+                        <i class="bi bi-search"></i>
+                    </a>
+                    <a asp-page="EditGenre" asp-route-id="@obj.GenreID" class="small-icon">
+                        <i class="bi bi-pencil-fill"></i>
+                    </a>
+                </div>
             </div>
         }
     </div>
