@@ -9,7 +9,6 @@
         var isValid = true;
         var albumTitle = document.getElementById("inputAlbumTitle");
         var albumArtist = document.getElementById("ddlArtist");
-        //var albumGenre = document.getElementById("inputAlbumTitle");
         var albumTracks = document.getElementById("inputNumberOfTracks");
         var albumReleaseYear = document.getElementById("inputReleaseYear");
         var albumPrice = document.getElementById("inputPrice");
@@ -22,11 +21,7 @@
             isValid = false;
             document.getElementById("albumArtistError").innerHTML = "This field is required.";
         }
-        /*
-        if (albumGenre.value == "") {
-            isValid = false;
-            document.getElementById("albumArtistError").innerHTML = "This field is required.";
-        }*/
+
         if (albumTracks.value == "0") {
             isValid = false;
             document.getElementById("albumNumberOfTracksError").innerHTML = "This field is required.";
