@@ -30,7 +30,7 @@
         <div class="row mb-3">
             <div class="col-sm-3">
                 <!--Where artist image goes-->
-                <a href="@artist.ArtistWebsite"><img class = "artist-image" src="@artist.ArtistImageURL"/></a>
+                <a href="@artist.ArtistWebsite"><img class = "artist-image" src="@artist.ArtistImageURL" title="@artist.ArtistName Website"/></a>
             </div>
             <div class="col-sm-8">
                 <!--Where artist information goes-->
@@ -49,16 +49,16 @@
                 <div class="row">
                     <!--Artist website here-->
                     <div class="col-sm-12">
-                        <a href="@artist.ArtistWebsite" class="artist-website">@artist.ArtistName Website</a>
+                        <a href="@artist.ArtistWebsite" class="artist-website" title="@artist.ArtistName Website">@artist.ArtistName Website</a>
                     </div>
                 </div>
             </div>
             <div class="col-sm-1">
                 <div class="col-sm-12">
-                    <a asp-page="EditArtist" asp-route-id="@artist.ArtistID" class="icon">
+                    <a asp-page="EditArtist" asp-route-id="@artist.ArtistID" class="icon" title="Edit @artist.ArtistName">
                         <i class="bi bi-pencil-square mx-2"></i>
                     </a>
-                    <a asp-page="DeleteArtist" asp-route-id="@artist.ArtistID" class="icon"
+                    <a asp-page="DeleteArtist" asp-route-id="@artist.ArtistID" class="icon" title="Delete @artist.ArtistName"
                     onclick="return confirm('Are you sure you want to delete the author? The action cannot be undone')">
                         <i class="bi bi-trash3"></i>
                     </a>
