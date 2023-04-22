@@ -136,12 +136,12 @@ namespace RecordCollectionUI.Pages.Albums
 
                     int r = cmd.ExecuteNonQuery();
 
-                    string sqlAlbumGenre = "INSERT INTO AlbumGenre(AlbumID, GenreID) VALUES(@albumID, @genreID)";
+                    string sqlAlbumGenre = "INSERT INTO AlbumGenre(AlbumID, GenreID) VALUES (@albumID, @genreID)";
                     cmd.CommandText = sqlAlbumGenre;
                     cmd.Parameters.Clear();
                     for (int i = 0; i < GenresSelected.Count(); i++)
                     {
-                        cmd.Parameters.AddWithValue("@albumID", ExistingAlbum.AlbumID);
+                        cmd.Parameters.AddWithValue("@albumID", id);
                         cmd.Parameters.AddWithValue("@genreID", GenresSelected[i].ToString());
                         cmd.ExecuteNonQuery();
                         cmd.Parameters.Clear();
