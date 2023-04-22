@@ -10,7 +10,7 @@ namespace RecordCollectionUI.Pages.Genres
         [BindProperty]
         public List<Album> AlbumsGenres { get; set; } = new List<Album>();
         [BindProperty]
-        public List<Genre> Genres { get; set; } = new List<Genre>();
+        //public List<Genre> Genres { get; set; } = new List<Genre>();
         public Genre CurrentGenre { get; set; } = new Genre();
 
 

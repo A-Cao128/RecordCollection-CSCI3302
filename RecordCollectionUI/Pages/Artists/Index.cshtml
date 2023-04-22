@@ -36,9 +36,9 @@
                 <!--Where artist information goes-->
                 <div class="row">
                     <!--Artist name here-->
-                    <div class="col-sm-12, title-name">
+                    <a asp-page="ResultAlbums" asp-route-id="@artist.ArtistID" class="col-sm-12, title-name" title="@artist.ArtistName Albums">
                         @artist.ArtistName
-                    </div>
+                    </a>
                 </div>
                 <div class="row">
                     <!--Artist bio here-->
