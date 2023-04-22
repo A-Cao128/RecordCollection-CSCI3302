@@ -18,7 +18,7 @@ namespace RecordCollectionUI.Pages.Genres
         {
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
             {
-                string sql = "SELECT DISTINCT * FROM Album JOIN AlbumGenre ON Album.AlbumID = AlbumGenre.AlbumID JOIN Genre ON AlbumGenre.GenreID = Genre.GenreID WHERE Genre.GenreID = @genreID ORDER BY AlbumTitle";
+                string sql = "SELECT * FROM Album JOIN AlbumGenre ON Album.AlbumID = AlbumGenre.AlbumID JOIN Genre ON AlbumGenre.GenreID = Genre.GenreID WHERE Genre.GenreID = @genreID ORDER BY AlbumTitle";
                 SqlCommand cmd = conn.CreateCommand();
                 cmd.Parameters.AddWithValue("@genreID", id);
                 cmd.CommandText = sql;
