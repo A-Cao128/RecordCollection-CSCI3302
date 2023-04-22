@@ -22,15 +22,15 @@
             document.getElementById("albumArtistError").innerHTML = "This field is required.";
         }
 
-        if (albumTracks.value == "0") {
+        if (albumTracks.value == "0" || albumTracks.value == "") {
             isValid = false;
             document.getElementById("albumNumberOfTracksError").innerHTML = "This field is required.";
         }
-        if (albumReleaseYear.value == "0") {
+        if (albumReleaseYear.value == "0" || albumReleaseYear.value == "") {
             isValid = false;
             document.getElementById("albumReleaseYearError").innerHTML = "This field is required.";
         }
-        if (albumPrice.value == "0") {
+        if (albumPrice.value == "0" || albumPrice.value == "") {
             isValid = false;
             document.getElementById("albumPriceError").innerHTML = "This field is required.";
         }
