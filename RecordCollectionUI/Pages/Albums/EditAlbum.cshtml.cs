@@ -132,7 +132,7 @@ namespace RecordCollectionUI.Pages.Albums
                     sql = "DELETE FROM AlbumGenre WHERE AlbumID=@albumID";
                     cmd.CommandText = sql;
                     cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@albumID", ExistingAlbum.AlbumID);
+                    cmd.Parameters.AddWithValue("@albumID", id);
 
                     int r = cmd.ExecuteNonQuery();
 
