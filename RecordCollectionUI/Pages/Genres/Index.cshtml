@@ -21,10 +21,10 @@
                 <div class="info-bio">
                     @obj.GenreName
                     <a asp-page="ResultsGenre" asp-route-id="@obj.GenreID" class="small-icon">
-                        <i class="bi bi-search"></i>
+                        <i class="bi bi-search" title="List of @obj.GenreName Albums"></i>
                     </a>
                     <a asp-page="EditGenre" asp-route-id="@obj.GenreID" class="small-icon">
-                        <i class="bi bi-pencil-fill"></i>
+                        <i class="bi bi-pencil-fill" title="Edit Genre Name"></i>
                     </a>
                 </div>
             </div>
