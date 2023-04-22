@@ -3,6 +3,46 @@
 @{
     ViewData["Title"] = "Edit Album";
 }
+
+<script type="text/javascript">
+    function validateInput() {
+        var isValid = true;
+        var albumTitle = document.getElementById("inputAlbumTitle");
+        var albumArtist = document.getElementById("ddlEditArtist");
+        var albumTracks = document.getElementById("inputNumberOfTracks");
+        var albumReleaseYear = document.getElementById("inputReleaseYear");
+        var albumPrice = document.getElementById("inputPrice");
+        var albumCover = document.getElementById("inputAlbumCoverImageURL");
+        if (albumTitle.value == "") {
+            isValid = false;
+            document.getElementById("albumTitleError").innerHTML = "This field is required.";
+        }
+        if (albumArtist.value == "") {
+            isValid = false;
+            document.getElementById("albumArtistError").innerHTML = "This field is required.";
+        }
+
+        if (albumTracks.value == "0") {
+            isValid = false;
+            document.getElementById("albumNumberOfTracksError").innerHTML = "This field is required.";
+        }
+        if (albumReleaseYear.value == "0") {
+            isValid = false;
+            document.getElementById("albumReleaseYearError").innerHTML = "This field is required.";
+        }
+        if (albumPrice.value == "0") {
+            isValid = false;
+            document.getElementById("albumPriceError").innerHTML = "This field is required.";
+        }
+        if (albumCover.value == "") {
+            isValid = false;
+            document.getElementById("albumAlbumCoverImageURLError").innerHTML = "This field is required.";
+        }
+
+        return isValid;
+    }
+</script>
+
 <form method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="row mb-3">
@@ -17,6 +57,7 @@
         <label for="ddlEditArtist" class="col-sm-2 col-form-label">Artist:</label>
         <div class="col-sm-10">
             <select asp-for="ExistingAlbum.ArtistID" asp-items="@Model.Artist" id="ddlEditArtist"></select>
+            <span asp-validation-for="ExistingAlbum.ArtistID" class="text-danger" id="albumArtistError"></span>
         </div>
     </div>
 
@@ -24,6 +65,7 @@
         <label for="inputNumberOfTracks" class="col-sm-2 col-form-label">Number of Tracks:</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="inputNumberOfTracks" asp-for="ExistingAlbum.NumberOfTracks" />
+            <span asp-validation-for="ExistingAlbum.NumberOfTracks" class="text-danger" id="albumNumberOfTracksError"></span>
         </div>
     </div>
 
@@ -31,6 +73,7 @@
         <label for="inputReleaseYear" class="col-sm-2 col-form-label">Release Yeaer:</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="inputReleaseYear" asp-for="ExistingAlbum.ReleaseYear" />
+            <span asp-validation-for="ExistingAlbum.ReleaseYear" class="text-danger" id="albumReleaseYearError"></span>
         </div>
     </div>
 
@@ -38,6 +81,7 @@
         <label for="inputPrice" class="col-sm-2 col-form-label">Price:</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="inputPrice" asp-for="ExistingAlbum.Price" />
+            <span asp-validation-for="ExistingAlbum.Price" class="text-danger" id="albumPriceError"></span>
         </div>
     </div>
 
@@ -45,6 +89,7 @@
         <label for="inputAlbumCoverImageURL" class="col-sm-2 col-form-label">Album Cover:</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="inputAlbumCoverImageURL" asp-for="ExistingAlbum.AlbumCoverImageURL" />
+            <span asp-validation-for="ExistingAlbum.AlbumCoverImageURL" class="text-danger" id="albumAlbumCoverImageURLError"></span>
         </div>
     </div>
 
