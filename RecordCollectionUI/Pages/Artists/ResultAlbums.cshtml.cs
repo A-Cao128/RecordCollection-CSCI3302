@@ -18,7 +18,7 @@ namespace RecordCollectionUI.Pages.Artists
         {
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
             {
-                string sql = "SELECT * FROM Album JOIN Artist ON Album.ArtistID = Artist.ArtistID WHERE Album.ArtistID = @artistID ORDER BY AlbumTitle";
+                string sql = "SELECT DISTINCT * FROM Album JOIN Artist ON Album.ArtistID = Artist.ArtistID WHERE Album.ArtistID = @artistID ORDER BY AlbumTitle";
                 SqlCommand cmd = conn.CreateCommand();
                 cmd.Parameters.AddWithValue("@artistID", id);
                 cmd.CommandText = sql;
