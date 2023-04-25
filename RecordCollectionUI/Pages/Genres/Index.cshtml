@@ -2,6 +2,10 @@
 @model RecordCollectionUI.Pages.Genres.IndexModel
 @{
     ViewData["Title"] = "Genres";
+    if (HttpContext.User.Identity != null)
+    {
+        Layout = HttpContext.User.Identity.IsAuthenticated ? "_UserLayout" : "_Layout";
+    }
 }
 <div class="container">
     <div class="row mb-3">

@@ -2,6 +2,10 @@
 @model RecordCollectionUI.Pages.Albums.AddAlbumModel
 @{
     ViewData["Title"] = "Add Album";
+    if (HttpContext.User.Identity != null)
+    {
+        Layout = HttpContext.User.Identity.IsAuthenticated ? "_UserLayout" : "_Layout";
+    }
 }
 
 <script type="text/javascript">
