@@ -2,6 +2,10 @@
 @*@model IndexModel*@
 @{
     ViewData["Title"] = "Record Collection";
+    if (HttpContext.User.Identity != null)
+    {
+        Layout = HttpContext.User.Identity.IsAuthenticated ? "_UserLayout" : "_Layout";
+    }
 }
 <!DOCTYPE html>
 <html>
